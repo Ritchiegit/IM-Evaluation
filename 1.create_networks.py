@@ -16,7 +16,7 @@ import networkx as nx
 def gen_ER_random(nodes, p, name):
 
     # Generate Graph
-    G = Graph.Erdos_Renyi(n=nodes,p=p,directed=True)
+    G = Graph.Erdos_Renyi(n=nodes,p=p,directed=True)  # from igraph
 
     # Transform into dataframe of edges
     source, target = [], []
@@ -103,7 +103,7 @@ if __name__ == '__main__':
     for p in [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9]:
         for j in range(vers):
 
-            random.seed(p * j)
+            random.seed(p * j)  # Change the seed of the random number generator
         
             gen_ER_random(n, p, 'nodes' + str(n) + '_p' + str(p) + '_v' + str(j+1))
 

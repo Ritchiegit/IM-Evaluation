@@ -63,12 +63,14 @@ def main():
     d = pd.read_csv(output_path)
     d = d.loc[(d['k'] == k) & (d['p'] == p)]
     output_files = d['file'].tolist()
+    print("input", input_files)
+    print("output", output_files)
 
     # Get files that haven't yet been done
     files = list(set(input_files) - set(output_files))
     if n:
         files = files[:int(n)]
-    
+    print(files)
     # Run algorithms on each file
     for f in files:
         print("")
@@ -126,7 +128,7 @@ def main():
         sp_exact_ic = IC_gpu(graph, S_exact, p, mc_greed) / float(nodes)
         sp_ris_ic   = IC_gpu(graph, S_ris, p, mc_greed) / float(nodes)
         sp_greed_ic = IC_gpu(graph, S_greed, p, mc_greed) / float(nodes)
-     
+        print("print result")
         # Gather into dataframe
         results = [f,t,k,p,seeds_ris,seeds_greed,seeds_exact,sp_ris,sp_greed,sp_exact,sp_ris_ic,sp_greed_ic,sp_exact_ic]
         with open(output_path, 'a') as fd:
